@@ -70,7 +70,6 @@ const images = [
 ];
 
 const imagesGallery = document.querySelector(".gallery");
-console.log(imagesGallery);
 
 const markup = images
     .map(image => `<li class="gallery-item">
