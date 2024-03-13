@@ -7,10 +7,9 @@ let parsedData;
 form.addEventListener("input", formInputHandler);
 
 function formInputHandler(event) {
-    event.preventDefault();
-    const message = textarea.value;
-    const email = form.elements.email.value;
-    const saveValue = JSON.stringify({ message, email });
+    const message = textarea.value.trim();
+    const email = form.elements.email.value.trim();
+    const saveValue = JSON.stringify({ email, message });
     localStorage.setItem(STORAGE_KEY, saveValue);
 };
 
@@ -25,14 +24,18 @@ if (storedData !== null) {
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const getData = localStorage.getItem(STORAGE_KEY);
+    const parsedGetData = JSON.parse(getData);
+
     if (textarea.value === "" || form.elements.email.value === "") {
         return alert("Заповніть усі поля");
     } else {
+        console.log(parsedGetData);
         form.reset();
-        console.log(parsedData);
         localStorage.removeItem(STORAGE_KEY);
     }
 });
+
 
 
 
